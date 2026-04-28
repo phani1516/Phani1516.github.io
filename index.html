@@ -450,7 +450,7 @@ h1, h2, h3, h4 {
    ============================================================ */
 #hero {
   min-height: 100vh;
-  padding-top: 140px;
+  padding-top: 100px;
   display: flex;
   align-items: center;
   position: relative;
@@ -465,6 +465,49 @@ h1, h2, h3, h4 {
 }
 @media (max-width: 920px) {
   .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+}
+
+@media (min-width: 921px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    align-items: start;
+    row-gap: 0;
+  }
+
+  .hero-grid > div:first-child {
+    display: contents;
+  }
+
+  .hero-tag {
+    grid-column: 1 / -1;
+    margin-bottom: 28px;
+  }
+
+  .hero-name {
+    grid-column: 1 / -1;
+    margin-bottom: 24px;
+  }
+
+  .hero-role {
+    grid-column: 1;
+    margin-bottom: 18px;
+  }
+
+  .hero-desc {
+    grid-column: 1;
+    margin-bottom: 32px;
+  }
+
+  .hero-cta {
+    grid-column: 1;
+  }
+
+  #statCardWrap {
+    grid-column: 2;
+    grid-row: 3 / span 3;
+    align-self: start;
+    margin-top: 0;
+  }
 }
 
 .hero-tag {
@@ -493,7 +536,7 @@ h1, h2, h3, h4 {
 }
 
 .hero-name {
-  font-size: clamp(48px, 9vw, 124px);
+  font-size: clamp(48px, 9vw, 100px);
   font-weight: 800;
   line-height: 0.92;
   letter-spacing: -0.045em;

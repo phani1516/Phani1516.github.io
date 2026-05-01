@@ -3,11 +3,32 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Phani Vidyadharani — DevOps, Cloud & AI Engineer. Azure, AKS, Terraform, CI/CD, and full-stack AI products." />
+<meta name="description" content="Phani Vidyadharani — DevOps, Cloud & AI Engineer. Azure, AKS, Terraform, CI/CD, plus four AI-native full-stack products shipped end-to-end." />
+<meta name="author" content="Phani Vidyadharani" />
+<meta name="theme-color" content="#00161d" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Phani Vidyadharani — DevOps · Cloud · AI Engineer" />
+<meta property="og:description" content="Cloud platform engineer (Azure / AKS / Terraform) and AI product builder. Four live AI-native apps shipped end-to-end." />
+<meta property="og:url" content="https://phani1516.github.io/" />
+<meta property="og:site_name" content="Phani Vidyadharani" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Phani Vidyadharani — DevOps · Cloud · AI Engineer" />
+<meta name="twitter:description" content="Cloud platform engineer (Azure / AKS / Terraform) and AI product builder. Four live AI-native apps shipped end-to-end." />
+
+<!-- Inline SVG favicon (data URI) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%234ddfff'/><stop offset='1' stop-color='%2300607a'/></linearGradient></defs><rect width='64' height='64' rx='14' fill='%2300161d'/><text x='50%25' y='52%25' text-anchor='middle' dominant-baseline='middle' font-family='ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto' font-weight='800' font-size='32' fill='url(%23g)'>PV</text></svg>" />
+
 <title>Phani Vidyadharani — DevOps · Cloud · AI Engineer</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
 /* ============================================================
    1. RESET + ROOT TOKENS
@@ -15,7 +36,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Base palette (per brief) */
+  /* Base palette */
   --c-deepest: #00161d;
   --c-deeper:  #001a22;
   --c-deep:    #00303d;
@@ -26,12 +47,12 @@
   /* Accents derived */
   --c-bright:  #00a3c4;
   --c-glow:    #4ddfff;
-  --c-amber:   #ffc46a; /* sparing accent */
+  --c-amber:   #ffc46a;
 
-  /* Text */
+  /* Text — slightly lifted mid/dim for AA contrast on dark */
   --text:      #e9f3f5;
-  --text-mid:  #b6d3d9;
-  --text-dim:  #7c9ba2;
+  --text-mid:  #c2dde2;
+  --text-dim:  #8aaab1;
 
   /* Glass */
   --glass:        rgba(0, 96, 122, 0.08);
@@ -80,54 +101,155 @@ body {
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: none; cursor: none; }
-
 ::selection { background: var(--c-bright); color: var(--c-deepest); }
 
+/* Visually-hidden helper for true skip-link / a11y text only */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 10001;
+  padding: 10px 16px;
+  background: var(--c-deepest);
+  color: var(--c-glow);
+  border: 1px solid var(--c-glow);
+  border-radius: 999px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.skip-link:focus { top: 16px; }
+
 /* ============================================================
-   2. ATMOSPHERIC BACKGROUND (gradient mesh + particles + noise)
+   2. ATMOSPHERIC BACKGROUND
+   - drifting gradient mesh
+   - dotted/grid layer with radial mask
+   - large blurred glow orbs
+   - subtle SVG noise overlay
    ============================================================ */
 .bg-mesh {
   position: fixed;
-  inset: 0;
-  z-index: -3;
+  inset: -10% -10% -10% -10%;
+  z-index: -4;
   background:
-    radial-gradient(60vw 60vh at 12% 8%,  rgba(0, 96, 122, 0.40), transparent 60%),
+    radial-gradient(60vw 60vh at 12% 8%,  rgba(0, 163, 196, 0.28), transparent 60%),
     radial-gradient(50vw 50vh at 92% 22%, rgba(0, 64, 82, 0.55), transparent 60%),
-    radial-gradient(70vw 70vh at 55% 92%, rgba(0, 48, 61, 0.60), transparent 65%),
+    radial-gradient(55vw 55vh at 20% 78%, rgba(0, 96, 122, 0.30), transparent 65%),
+    radial-gradient(70vw 70vh at 80% 96%, rgba(0, 48, 61, 0.55), transparent 65%),
     linear-gradient(180deg, #00161d 0%, #001017 100%);
+  animation: meshDrift 38s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes meshDrift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-2%, 1%, 0) scale(1.03); }
+  100% { transform: translate3d(2%, -1%, 0) scale(1.02); }
 }
 
-#particle-canvas {
+/* Glow orbs — GPU-friendly, drift slowly */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-orbs .orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  will-change: transform;
+}
+.bg-orbs .orb.o1 {
+  width: 52vw; height: 52vw;
+  top: -10%; left: -8%;
+  background: radial-gradient(circle, rgba(77, 223, 255, 0.45), transparent 65%);
+  animation: orbDrift1 26s ease-in-out infinite alternate;
+}
+.bg-orbs .orb.o2 {
+  width: 44vw; height: 44vw;
+  top: 30%; right: -12%;
+  background: radial-gradient(circle, rgba(0, 163, 196, 0.40), transparent 65%);
+  animation: orbDrift2 32s ease-in-out infinite alternate;
+}
+.bg-orbs .orb.o3 {
+  width: 38vw; height: 38vw;
+  bottom: -10%; left: 35%;
+  background: radial-gradient(circle, rgba(255, 196, 106, 0.10), transparent 65%);
+  animation: orbDrift3 40s ease-in-out infinite alternate;
+}
+@keyframes orbDrift1 {
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  100% { transform: translate3d(8vw, 6vh, 0) scale(1.08); }
+}
+@keyframes orbDrift2 {
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  100% { transform: translate3d(-6vw, -4vh, 0) scale(1.05); }
+}
+@keyframes orbDrift3 {
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  100% { transform: translate3d(-4vw, -8vh, 0) scale(1.06); }
+}
+
+/* Dotted texture layer with edge fade */
+.bg-grid {
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.35;
+  background-image:
+    radial-gradient(rgba(180, 220, 232, 0.18) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+  background-position: 0 0;
+  mask-image: radial-gradient(ellipse at 50% 35%, black 0%, black 45%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 35%, black 0%, black 45%, transparent 85%);
 }
 
+/* Optional faint line grid behind the dots, far more subtle */
+.bg-lines {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image:
+    linear-gradient(to right, rgba(180,220,232,0.5) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(180,220,232,0.5) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(circle at 50% 30%, black, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black, transparent 75%);
+}
+
+/* SVG noise */
 .bg-noise {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.055;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 0.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
-/* Scroll-grid faint overlay for tech texture */
-.bg-grid {
+/* Optional particle canvas (kept, lower opacity now that we have orbs) */
+#particle-canvas {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.05;
-  background-image:
-    linear-gradient(to right, rgba(180,220,232,0.4) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(180,220,232,0.4) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(circle at 50% 30%, black, transparent 75%);
-  -webkit-mask-image: radial-gradient(circle at 50% 30%, black, transparent 75%);
+  opacity: 0.35;
 }
 
 /* ============================================================
@@ -312,12 +434,9 @@ html { scrollbar-color: var(--c-accent) var(--c-deepest); scrollbar-width: thin;
   transform-origin: left;
   transition: transform 0.4s var(--ease);
 }
-.nav-links a:hover, .nav-links a.active {
-  color: var(--text);
-}
-.nav-links a:hover::after, .nav-links a.active::after {
-  transform: scaleX(1);
-}
+.nav-links a:hover, .nav-links a.active { color: var(--text); }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
 .nav-cta {
   padding: 9px 18px;
   border-radius: 999px;
@@ -400,16 +519,13 @@ html { scrollbar-color: var(--c-accent) var(--c-deepest); scrollbar-width: thin;
   margin: 0 auto;
   padding: 0 var(--pad);
 }
-
 section { padding: clamp(80px, 12vh, 140px) 0; position: relative; }
-
 h1, h2, h3, h4 {
   font-family: var(--f-display);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.05;
 }
-
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -426,7 +542,6 @@ h1, h2, h3, h4 {
   width: 24px; height: 1px;
   background: linear-gradient(90deg, transparent, var(--c-glow));
 }
-
 .section-title {
   font-size: clamp(36px, 5.5vw, 64px);
   margin-bottom: 16px;
@@ -437,7 +552,6 @@ h1, h2, h3, h4 {
   background-clip: text;
   color: transparent;
 }
-
 .section-sub {
   font-size: clamp(15px, 1.3vw, 17px);
   color: var(--text-mid);
@@ -466,50 +580,21 @@ h1, h2, h3, h4 {
 @media (max-width: 920px) {
   .hero-grid { grid-template-columns: 1fr; gap: 56px; }
 }
-
 @media (min-width: 921px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
     align-items: start;
     row-gap: 0;
   }
-
-  .hero-grid > div:first-child {
-    display: contents;
-  }
-
-  .hero-tag {
-    grid-column: 1 / -1;
-    margin-bottom: 28px;
-  }
-
-  .hero-name {
-    grid-column: 1 / -1;
-    margin-bottom: 24px;
-  }
-
-  .hero-role {
-    grid-column: 1;
-    margin-bottom: 18px;
-  }
-
-  .hero-desc {
-    grid-column: 1;
-    margin-bottom: 32px;
-  }
-
-  .hero-cta {
-    grid-column: 1;
-  }
-
-  #statCardWrap {
-    grid-column: 2;
-    grid-row: 3 / span 3;
-    align-self: start;
-    margin-top: 0;
-  }
+  .hero-grid > div:first-child { display: contents; }
+  .hero-tag      { grid-column: 1 / -1; margin-bottom: 28px; }
+  .hero-name     { grid-column: 1 / -1; margin-bottom: 24px; }
+  .hero-role     { grid-column: 1; margin-bottom: 18px; }
+  .hero-desc     { grid-column: 1; margin-bottom: 18px; }
+  .hero-focus    { grid-column: 1; margin-bottom: 32px; }
+  .hero-cta      { grid-column: 1; }
+  #statCardWrap  { grid-column: 2; grid-row: 3 / span 4; align-self: start; margin-top: 0; }
 }
-
 .hero-tag {
   display: inline-flex;
   align-items: center;
@@ -534,7 +619,6 @@ h1, h2, h3, h4 {
   box-shadow: 0 0 10px var(--c-glow);
   animation: dotBlink 1.6s ease-in-out infinite;
 }
-
 .hero-name {
   font-size: clamp(48px, 9vw, 100px);
   font-weight: 800;
@@ -571,7 +655,6 @@ h1, h2, h3, h4 {
   margin: 0 0.05em;
   vertical-align: 0.05em;
 }
-
 .hero-role {
   font-family: var(--f-mono);
   font-size: clamp(13px, 1.3vw, 15px);
@@ -584,15 +667,43 @@ h1, h2, h3, h4 {
   flex-wrap: wrap;
 }
 .hero-role .sep { color: var(--text-dim); }
-
 .hero-desc {
   font-size: clamp(15px, 1.3vw, 18px);
   color: var(--text-mid);
-  max-width: 540px;
-  margin-bottom: 36px;
+  max-width: 560px;
+  margin-bottom: 18px;
   line-height: 1.65;
 }
 .hero-desc strong { color: var(--text); font-weight: 500; }
+
+/* "Currently most excited about" focus line */
+.hero-focus {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 580px;
+  margin-bottom: 32px;
+  padding: 14px 18px;
+  border-left: 2px solid var(--c-glow);
+  background: linear-gradient(90deg, rgba(77, 223, 255, 0.08), rgba(77, 223, 255, 0.0));
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+.hero-focus .focus-lbl {
+  flex-shrink: 0;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-glow);
+  padding-top: 3px;
+  white-space: nowrap;
+}
+.hero-focus .focus-text {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.55;
+}
+.hero-focus .focus-text strong { color: var(--text); font-weight: 500; }
 
 .hero-cta {
   display: flex;
@@ -647,7 +758,7 @@ h1, h2, h3, h4 {
 }
 .btn svg { width: 16px; height: 16px; }
 
-/* Hero stat card (3D tilt) */
+/* Hero stat card */
 .stat-card {
   position: relative;
   padding: 36px 32px;
@@ -751,9 +862,7 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   color: var(--text-mid);
 }
-.stat-pin {
-  display: inline-flex; align-items: center; gap: 6px;
-}
+.stat-pin { display: inline-flex; align-items: center; gap: 6px; }
 
 /* Scroll indicator */
 .scroll-hint {
@@ -803,7 +912,6 @@ h1, h2, h3, h4 {
   line-height: 1.75;
 }
 .about-text p strong { color: var(--text); font-weight: 500; }
-
 .about-quick {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -846,14 +954,7 @@ h1, h2, h3, h4 {
   .skills-grid { grid-template-columns: 1fr; }
 }
 .skill-block.span-2 { grid-column: 1 / -1; }
-.skill-block.span-2 .bars-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 28px;
-}
-@media (max-width: 760px) {
-  .skill-block.span-2 .bars-grid { grid-template-columns: 1fr; }
-}
+
 .skill-block {
   padding: 28px;
   background: linear-gradient(180deg, rgba(0, 96, 122, 0.06), rgba(0, 22, 29, 0.4));
@@ -883,7 +984,8 @@ h1, h2, h3, h4 {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
 }
 .skill-icon {
   width: 36px; height: 36px;
@@ -901,52 +1003,69 @@ h1, h2, h3, h4 {
   font-size: 18px;
   font-weight: 600;
 }
-.skill-bar {
-  margin-bottom: 14px;
-}
-.skill-bar:last-child { margin-bottom: 0; }
-.skill-bar-head {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  font-size: 13px;
-}
-.skill-bar-head .name { color: var(--text); font-weight: 500; }
-.skill-bar-head .pct { color: var(--text-dim); font-family: var(--f-mono); font-size: 11px; }
-.skill-bar-track {
-  height: 4px;
-  background: rgba(180, 220, 232, 0.06);
+
+/* Confidence label — replaces numeric self-rating bars */
+.skill-confidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  padding: 5px 12px;
   border-radius: 999px;
-  overflow: hidden;
-  position: relative;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid var(--glass-border);
+  background: rgba(180, 220, 232, 0.04);
+  color: var(--text-mid);
 }
-.skill-bar-fill {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--c-accent), var(--c-bright), var(--c-glow));
-  border-radius: 999px;
-  transition: width 1.4s var(--ease);
-  position: relative;
-}
-.skill-bar-fill::after {
+.skill-confidence::before {
   content: "";
-  position: absolute;
-  right: 0; top: 50%;
-  transform: translateY(-50%);
-  width: 8px; height: 8px;
+  width: 6px; height: 6px;
   border-radius: 50%;
+  background: var(--text-dim);
+  box-shadow: 0 0 6px transparent;
+}
+.skill-confidence.production {
+  color: var(--c-glow);
+  background: rgba(77, 223, 255, 0.08);
+  border-color: rgba(77, 223, 255, 0.25);
+}
+.skill-confidence.production::before {
   background: var(--c-glow);
   box-shadow: 0 0 8px var(--c-glow);
-  opacity: 0;
-  transition: opacity 0.4s 1.2s;
 }
-.skill-block.in-view .skill-bar-fill::after { opacity: 1; }
+.skill-confidence.working {
+  color: var(--c-bright);
+  background: rgba(0, 163, 196, 0.10);
+  border-color: rgba(0, 163, 196, 0.25);
+}
+.skill-confidence.working::before {
+  background: var(--c-bright);
+  box-shadow: 0 0 6px var(--c-bright);
+}
+.skill-confidence.familiar {
+  color: var(--c-amber);
+  background: rgba(255, 196, 106, 0.06);
+  border-color: rgba(255, 196, 106, 0.2);
+}
+.skill-confidence.familiar::before {
+  background: var(--c-amber);
+  box-shadow: 0 0 6px var(--c-amber);
+}
+
+.skill-desc {
+  font-size: 13.5px;
+  color: var(--text-mid);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
 
 .chips-row {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 20px;
 }
 .chip {
   padding: 6px 12px;
@@ -964,6 +1083,17 @@ h1, h2, h3, h4 {
   color: var(--c-glow);
   border-color: rgba(77, 223, 255, 0.25);
 }
+
+.skill-foot {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--glass-border);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+.skill-foot strong { color: var(--c-glow); font-weight: 500; }
 
 /* ============================================================
    11. EXPERIENCE TIMELINE
@@ -1143,6 +1273,15 @@ h1, h2, h3, h4 {
   background: var(--c-glow);
   box-shadow: 0 0 6px var(--c-glow);
 }
+.project-status.reference {
+  background: rgba(255, 196, 106, 0.06);
+  color: var(--c-amber);
+  border-color: rgba(255, 196, 106, 0.2);
+}
+.project-status.reference::before {
+  background: var(--c-amber);
+  box-shadow: 0 0 6px var(--c-amber);
+}
 .project-emoji {
   font-size: 30px;
   margin-bottom: 16px;
@@ -1161,10 +1300,11 @@ h1, h2, h3, h4 {
   line-height: 1.65;
   margin-bottom: 18px;
 }
+.project-hook strong { color: var(--text); font-weight: 500; }
 .project-why {
   font-size: 13px;
   color: var(--text-dim);
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 20px;
   padding: 14px 16px;
   border-left: 2px solid var(--c-bright);
@@ -1200,6 +1340,10 @@ h1, h2, h3, h4 {
   background: rgba(77, 223, 255, 0.1);
   color: var(--c-glow);
   border-color: rgba(77, 223, 255, 0.3);
+}
+.project-btn:focus-visible {
+  outline: 2px solid var(--c-glow);
+  outline-offset: 2px;
 }
 .project-btn svg { width: 14px; height: 14px; }
 .project-btn.primary {
@@ -1275,7 +1419,7 @@ h1, h2, h3, h4 {
 }
 
 /* ============================================================
-   14. LEADERSHIP / EXTRA
+   14. EXTRAS
    ============================================================ */
 .extras-grid {
   display: grid;
@@ -1294,10 +1438,7 @@ h1, h2, h3, h4 {
   transform: translateY(-2px);
   border-color: rgba(77, 223, 255, 0.25);
 }
-.extra-icon {
-  font-size: 26px;
-  margin-bottom: 14px;
-}
+.extra-icon { font-size: 26px; margin-bottom: 14px; }
 .extra-num {
   font-family: var(--f-display);
   font-size: clamp(40px, 5vw, 56px);
@@ -1369,7 +1510,6 @@ h1, h2, h3, h4 {
   0%   { transform: scale(0.95); opacity: 0.8; }
   100% { transform: scale(1.4);  opacity: 0; }
 }
-
 .contact-cards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1419,7 +1559,6 @@ h1, h2, h3, h4 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .contact-cta {
   margin-top: 28px;
   padding: 24px;
@@ -1434,6 +1573,7 @@ h1, h2, h3, h4 {
 }
 .contact-cta-text { font-family: var(--f-display); font-size: 17px; font-weight: 600; }
 .contact-cta-text small { display: block; font-family: var(--f-body); font-size: 13px; font-weight: 400; color: var(--text-mid); margin-top: 4px; }
+.contact-cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* ============================================================
    16. FOOTER
@@ -1485,7 +1625,7 @@ footer {
   .stat-cell:first-child { border-top: none !important; padding-top: 0 !important; }
 }
 
-/* prefers-reduced-motion */
+/* prefers-reduced-motion — gates all animations including bg layers */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -1493,65 +1633,88 @@ footer {
     transition-duration: 0.01ms !important;
   }
   html { scroll-behavior: auto; }
+  .bg-mesh,
+  .bg-orbs .orb { animation: none !important; transform: none !important; }
+  #particle-canvas { display: none; }
+  .stat-card { animation: none !important; }
+  .scroll-hint .line { animation: none !important; }
+}
+
+/* Focus styles — visible keyboard focus throughout */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--c-glow);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 </style>
 </head>
 <body>
 
+<!-- Skip link for keyboard / screen-reader users -->
+<a href="#main" class="skip-link">Skip to content</a>
+
 <!-- ========== BACKGROUND LAYERS ========== -->
-<div class="bg-mesh"></div>
-<canvas id="particle-canvas"></canvas>
-<div class="bg-grid"></div>
-<div class="bg-noise"></div>
+<div class="bg-mesh" aria-hidden="true"></div>
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+<div class="bg-lines" aria-hidden="true"></div>
+<div class="bg-grid" aria-hidden="true"></div>
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+<div class="bg-noise" aria-hidden="true"></div>
 
 <!-- ========== CUSTOM CURSOR ========== -->
-<div class="cursor-ring"></div>
-<div class="cursor-dot"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
 
 <!-- ========== LOADING SCREEN ========== -->
-<div class="loader" id="loader">
+<div class="loader" id="loader" aria-hidden="true">
   <div class="loader-mark">PV</div>
   <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
   <div class="loader-tag">Initializing portfolio</div>
 </div>
 
 <!-- ========== NAV ========== -->
-<nav class="nav" id="nav">
-  <a href="#hero" class="nav-brand"><span class="dot"></span>Phani.dev</a>
+<nav class="nav" id="nav" aria-label="Primary">
+  <a href="#hero" class="nav-brand"><span class="dot" aria-hidden="true"></span>Phani.dev</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
+    <li><a href="#projects">Work</a></li>
     <li><a href="#education">Education</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Get in touch →</a>
-  <button class="menu-toggle" id="menuBtn" aria-label="Menu"><span></span></button>
+  <button class="menu-toggle" id="menuBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMobile"><span></span></button>
 </nav>
 <div class="nav-mobile" id="navMobile">
   <a href="#about">About</a>
   <a href="#skills">Skills</a>
   <a href="#experience">Experience</a>
-  <a href="#projects">Projects</a>
+  <a href="#projects">Work</a>
   <a href="#education">Education</a>
   <a href="#contact">Contact</a>
 </div>
 
+<main id="main">
+
 <!-- ========== HERO ========== -->
-<section id="hero">
+<section id="hero" aria-labelledby="hero-name">
   <div class="container">
     <div class="hero-grid">
       <div>
-        <div class="hero-tag reveal"><span class="pulse"></span>Open to DevOps · Cloud · AI Engineer roles</div>
-        <h1 class="hero-name reveal delay-1">
+        <div class="hero-tag reveal"><span class="pulse" aria-hidden="true"></span>Open to DevOps · Cloud · AI Engineer roles</div>
+        <h1 class="hero-name reveal delay-1" id="hero-name">
           <span class="first">Phani</span>
           <span class="last">Vidyadharani<span class="ampersand">.</span></span>
         </h1>
         <div class="hero-role reveal delay-2">
-          <span>DevOps & Cloud</span>
-          <span class="sep">/</span>
+          <span>DevOps &amp; Cloud</span>
+          <span class="sep" aria-hidden="true">/</span>
           <span>AI Engineering</span>
-          <span class="sep">/</span>
+          <span class="sep" aria-hidden="true">/</span>
           <span>Full-Stack Builder</span>
         </div>
         <p class="hero-desc reveal delay-2">
@@ -1561,20 +1724,27 @@ footer {
           <strong>AI YouTube summarizer</strong>, and an <strong>AI job aggregator with resume tailoring</strong>
           — all designed, built, and live.
         </p>
+        <div class="hero-focus reveal delay-2">
+          <span class="focus-lbl">Currently most excited about</span>
+          <span class="focus-text"><strong>AI product engineering</strong> — shipping LLM-powered apps end-to-end (Python ↔ Next.js ↔ OpenAI).</span>
+        </div>
         <div class="hero-cta reveal delay-3">
           <a href="#projects" class="btn btn-primary">
             <span>View selected work</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="https://docs.google.com/document/d/1iENdYa1kmuEzd2a_8e-X9ZjxFqBMCMHq/edit?usp=sharing&amp;ouid=100588455178571497159&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" class="btn btn-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Download résumé</span>
           </a>
           <a href="#contact" class="btn btn-ghost">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg>
             <span>Reach out</span>
           </a>
         </div>
       </div>
-
       <div class="reveal delay-3" id="statCardWrap">
-        <div class="stat-card" id="statCard">
+        <div class="stat-card" id="statCard" aria-label="Profile snapshot">
           <div class="stat-card-head">
             <span>cloud-ops/profile</span>
             <span class="live">live</span>
@@ -1582,19 +1752,19 @@ footer {
           <div class="stat-row">
             <div class="stat-cell">
               <div class="stat-num">3<span class="plus">+</span></div>
-              <div class="stat-label">Years DevOps</div>
+              <div class="stat-label">Yrs DevOps</div>
             </div>
             <div class="stat-cell">
               <div class="stat-num">4<span class="plus">+</span></div>
-              <div class="stat-label">Years Ops Lead</div>
+              <div class="stat-label">Yrs Data Ops</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-num">4</div>
+              <div class="stat-label">AI apps live</div>
             </div>
             <div class="stat-cell">
               <div class="stat-num">6</div>
               <div class="stat-label">Live products</div>
-            </div>
-            <div class="stat-cell">
-              <div class="stat-num">90<span class="plus">+</span></div>
-              <div class="stat-label">Volunteer hrs</div>
             </div>
           </div>
           <div class="stat-card-foot">
@@ -1605,19 +1775,19 @@ footer {
       </div>
     </div>
   </div>
-  <div class="scroll-hint">
+  <div class="scroll-hint" aria-hidden="true">
     <span>scroll</span>
     <div class="line"></div>
   </div>
 </section>
 
 <!-- ========== ABOUT ========== -->
-<section id="about">
+<section id="about" aria-labelledby="about-title">
   <div class="container">
     <div class="about-grid">
       <div class="reveal">
         <div class="eyebrow">01 / About</div>
-        <h2 class="section-title">Two stacks,<br/>one <span class="accent">engineer.</span></h2>
+        <h2 class="section-title" id="about-title">Two stacks,<br/>one <span class="accent">engineer.</span></h2>
       </div>
       <div class="about-text reveal delay-1">
         <p>
@@ -1627,16 +1797,16 @@ footer {
           workloads, observability, RBAC, network segmentation, cost.
         </p>
         <p>
-          By night I build <strong>AI-native, full-stack products</strong>. Not "I prompted a chatbot" projects —
-          systems with real architecture: a local-first PWA with a hand-rolled sync engine, a WebRTC P2P file
-          transfer app, a swipeable AI YouTube summarizer with a Python backend, and an AI job aggregator with
-          resume tailoring. <strong>Four live products, all shipped end-to-end.</strong>
+          By night I build <strong>AI-native, full-stack products</strong> with real architecture: a local-first
+          PWA with a hand-rolled sync engine, a WebRTC P2P file transfer app, a swipeable AI YouTube summarizer
+          with a Python backend, and an AI job aggregator with resume tailoring.
+          <strong>Four live products, all shipped end-to-end.</strong>
         </p>
         <p>
-          I use AI as <strong>leverage, not a crutch</strong> — owning data models, sync protocols, network
-          stacks, deployment, and product design while letting an AI pair-programmer accelerate the typing. That
-          mix — platform-engineering rigor plus full-stack product instinct — is what I bring to a DevOps,
-          Platform, SRE, or AI Engineer role.
+          What I'm most excited about right now is <strong>AI product engineering</strong> — designing transcript
+          pipelines, prompt and token budgets, streaming LLM responses, and the glue between Python backends and
+          Next.js frontends. That mix — platform-engineering rigor plus full-stack product instinct plus a
+          working AI toolchain — is what I bring to a DevOps, Platform, SRE, or AI Engineer role.
         </p>
         <div class="about-quick">
           <div class="about-quick-cell">
@@ -1662,109 +1832,117 @@ footer {
 </section>
 
 <!-- ========== SKILLS ========== -->
-<section id="skills">
+<section id="skills" aria-labelledby="skills-title">
   <div class="container">
     <div class="reveal">
-      <div class="eyebrow">02 / Technical Skills</div>
-      <h2 class="section-title">The stack I <span class="accent">operate.</span></h2>
-      <p class="section-sub">Six years across cloud, DevOps, and operations have given me working command of the platforms below — not textbook familiarity, but the kind that comes from building, breaking, and on-calling them in production. The AI & full-stack block is where my side-project work lives.</p>
+      <div class="eyebrow">02 / Skills</div>
+      <h2 class="section-title" id="skills-title">The stack I <span class="accent">operate.</span></h2>
+      <p class="section-sub">Six years across cloud, DevOps, and operations have given me working command of the platforms below — not textbook familiarity, but the kind that comes from building, breaking, and on-calling them in production. The AI &amp; full-stack block is where my side-project work lives.</p>
     </div>
-
     <div class="skills-grid">
 
+      <!-- Azure Cloud Platform -->
       <div class="skill-block reveal">
         <div class="skill-head">
-          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9"/><path d="M3 12h18"/><path d="M12 3v18"/></svg></div>
-          <div class="skill-title">Azure Cloud Platform</div>
+          <div class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 9 9 9 9 0 0 1-9 9"/><path d="M3 12h18"/><path d="M12 3v18"/></svg></div>
+          <h3 class="skill-title">Azure Cloud Platform</h3>
+          <span class="skill-confidence production">Production</span>
         </div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Azure Core (App Service · Functions · VMSS · SQL)</span><span class="pct">92</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="92"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Azure Kubernetes Service (AKS)</span><span class="pct">86</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="86"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Entra ID · RBAC · Key Vault</span><span class="pct">88</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div></div>
+        <p class="skill-desc">Three years operating Azure workloads in production — App Service, Functions, VMSS, Azure SQL, Service Bus, Blob — alongside identity (Entra ID, RBAC, Key Vault) and AKS for containerised services.</p>
         <div class="chips-row">
-          <span class="chip">App Service</span><span class="chip">Functions</span><span class="chip">VMSS</span><span class="chip">Azure SQL</span><span class="chip">Service Bus</span><span class="chip">Blob Storage</span>
+          <span class="chip">App Service</span><span class="chip">Functions</span><span class="chip">VMSS</span><span class="chip">Azure SQL</span><span class="chip">Service Bus</span><span class="chip">Blob Storage</span><span class="chip">Entra ID</span><span class="chip">Key Vault</span>
         </div>
       </div>
 
+      <!-- CI/CD & IaC -->
       <div class="skill-block reveal delay-1">
         <div class="skill-head">
-          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-          <div class="skill-title">CI/CD & Infrastructure as Code</div>
+          <div class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <h3 class="skill-title">CI/CD &amp; Infrastructure as Code</h3>
+          <span class="skill-confidence production">Production</span>
         </div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Azure DevOps (YAML Pipelines)</span><span class="pct">92</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="92"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Terraform · ARM Templates</span><span class="pct">88</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Jenkins</span><span class="pct">78</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="78"></div></div></div>
+        <p class="skill-desc">Azure DevOps YAML pipelines for Java, .NET, and container builds; Terraform modules and Azure Runbooks for repeatable provisioning; Jenkins where legacy estates demanded it.</p>
         <div class="chips-row">
-          <span class="chip">YAML</span><span class="chip">Helm</span><span class="chip">Git / GitHub</span><span class="chip">Maven</span><span class="chip">MSBuild</span><span class="chip">Runbooks</span>
+          <span class="chip">Azure DevOps</span><span class="chip">YAML Pipelines</span><span class="chip">Terraform</span><span class="chip">ARM Templates</span><span class="chip">Jenkins</span><span class="chip">Helm</span><span class="chip">Maven</span><span class="chip">MSBuild</span><span class="chip">Runbooks</span>
         </div>
       </div>
 
+      <!-- Containers & Orchestration -->
       <div class="skill-block reveal">
         <div class="skill-head">
-          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-          <div class="skill-title">Containers & Orchestration</div>
+          <div class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <h3 class="skill-title">Containers &amp; Orchestration</h3>
+          <span class="skill-confidence production">Production</span>
         </div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Docker · Image management</span><span class="pct">88</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Kubernetes (AKS)</span><span class="pct">85</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="85"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Azure Container Registry</span><span class="pct">86</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="86"></div></div></div>
+        <p class="skill-desc">AKS clusters with Helm-based deployments and rollbacks; Docker images managed in ACR; Pods, Deployments, Services, ConfigMaps, and Secrets across multi-namespace environments.</p>
         <div class="chips-row">
-          <span class="chip">Pods</span><span class="chip">Deployments</span><span class="chip">Services</span><span class="chip">ConfigMaps</span><span class="chip">Secrets</span><span class="chip">Helm Charts</span>
+          <span class="chip">Docker</span><span class="chip">Kubernetes (AKS)</span><span class="chip">ACR</span><span class="chip">Helm Charts</span><span class="chip">Pods</span><span class="chip">Deployments</span><span class="chip">Services</span><span class="chip">ConfigMaps</span><span class="chip">Secrets</span>
         </div>
       </div>
 
+      <!-- Observability & SRE -->
       <div class="skill-block reveal delay-1">
         <div class="skill-head">
-          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-5"/></svg></div>
-          <div class="skill-title">Observability & SRE</div>
+          <div class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 4 5-5"/></svg></div>
+          <h3 class="skill-title">Observability &amp; SRE</h3>
+          <span class="skill-confidence working">Working</span>
         </div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Azure Monitor · App Insights</span><span class="pct">88</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Log Analytics (KQL)</span><span class="pct">82</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="82"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Grafana Dashboards</span><span class="pct">80</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="80"></div></div></div>
+        <p class="skill-desc">Azure Monitor, Application Insights, and Log Analytics with KQL for diagnosis; Grafana for dashboards; alert rules wired to Dev/Ops on-call; RCA and incident response on real production incidents.</p>
         <div class="chips-row">
-          <span class="chip">Alerting</span><span class="chip">RCA</span><span class="chip">Incident Response</span><span class="chip">SLO/SLI</span>
+          <span class="chip">Azure Monitor</span><span class="chip">App Insights</span><span class="chip">Log Analytics</span><span class="chip">KQL</span><span class="chip">Grafana</span><span class="chip">Alerting</span><span class="chip">RCA</span><span class="chip">SLO/SLI</span>
         </div>
       </div>
 
+      <!-- Networking & Security -->
       <div class="skill-block reveal">
         <div class="skill-head">
-          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></div>
-          <div class="skill-title">Networking & Security</div>
+          <div class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></div>
+          <h3 class="skill-title">Networking &amp; Security</h3>
+          <span class="skill-confidence working">Working</span>
         </div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">VNets · Hub-and-Spoke · NSG/ASG</span><span class="pct">85</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="85"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">ExpressRoute · VPN · Firewall</span><span class="pct">78</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="78"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">SSL / Cert Management</span><span class="pct">82</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="82"></div></div></div>
+        <p class="skill-desc">VNets in hub-and-spoke topology, NSG/ASG rules at subnet and workload level, App Gateway / Load Balancer / Traffic Manager fronting services; SSL/cert management and MFA/SSO in line with Entra ID policy.</p>
         <div class="chips-row">
-          <span class="chip">Load Balancer</span><span class="chip">App Gateway</span><span class="chip">Traffic Manager</span><span class="chip">MFA / SSO</span>
+          <span class="chip">VNets</span><span class="chip">Hub-and-Spoke</span><span class="chip">NSG / ASG</span><span class="chip">Load Balancer</span><span class="chip">App Gateway</span><span class="chip">Traffic Manager</span><span class="chip">VPN Gateway</span><span class="chip">Azure Firewall</span><span class="chip">SSL / Certs</span><span class="chip">MFA / SSO</span>
         </div>
       </div>
 
+      <!-- Automation & Scripting -->
       <div class="skill-block reveal delay-1">
         <div class="skill-head">
-          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><path d="M12 19h8"/></svg></div>
-          <div class="skill-title">Automation & Scripting</div>
+          <div class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><path d="M12 19h8"/></svg></div>
+          <h3 class="skill-title">Automation &amp; Scripting</h3>
+          <span class="skill-confidence working">Working</span>
         </div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Python</span><span class="pct">82</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="82"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">PowerShell</span><span class="pct">85</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="85"></div></div></div>
-        <div class="skill-bar"><div class="skill-bar-head"><span class="name">Bash · Linux</span><span class="pct">80</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="80"></div></div></div>
+        <p class="skill-desc">Python and PowerShell scripts that quietly remove human error from routine ops work; Bash where Linux fleets demand it; comfortable across RHEL, Ubuntu, and Windows Server.</p>
         <div class="chips-row">
-          <span class="chip">RHEL</span><span class="chip">Ubuntu</span><span class="chip">Windows Server</span><span class="chip">Backups</span><span class="chip">Cost Mgmt</span>
+          <span class="chip">Python</span><span class="chip">PowerShell</span><span class="chip">Bash</span><span class="chip">Linux</span><span class="chip">RHEL</span><span class="chip">Ubuntu</span><span class="chip">Windows Server</span><span class="chip">Backups</span><span class="chip">Cost Mgmt</span>
         </div>
       </div>
 
+      <!-- AI & LLM Engineering (NEW 6th category, span-2) -->
       <div class="skill-block span-2 reveal">
         <div class="skill-head">
-          <div class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
-          <div class="skill-title">AI Engineering & Full-Stack <span style="font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-glow);margin-left:10px;padding:3px 8px;border:1px solid rgba(77,223,255,.25);border-radius:999px;background:rgba(77,223,255,.06);vertical-align:middle;">Side projects, four shipped</span></div>
+          <div class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+          <h3 class="skill-title">AI &amp; LLM Engineering</h3>
+          <span class="skill-confidence working">Working · 4 apps shipped</span>
         </div>
-        <div class="bars-grid">
-          <div class="skill-bar"><div class="skill-bar-head"><span class="name">LLM Integration · Prompt Engineering</span><span class="pct">82</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="82"></div></div></div>
-          <div class="skill-bar"><div class="skill-bar-head"><span class="name">React 19 · Next.js · TypeScript</span><span class="pct">85</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="85"></div></div></div>
-          <div class="skill-bar"><div class="skill-bar-head"><span class="name">Agentic Dev Workflows</span><span class="pct">88</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="88"></div></div></div>
-          <div class="skill-bar"><div class="skill-bar-head"><span class="name">Supabase · Postgres · RLS</span><span class="pct">80</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="80"></div></div></div>
-          <div class="skill-bar"><div class="skill-bar-head"><span class="name">System & Sync Design (offline-first, P2P)</span><span class="pct">85</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="85"></div></div></div>
-          <div class="skill-bar"><div class="skill-bar-head"><span class="name">Python Backends (FastAPI / scrapers)</span><span class="pct">80</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-pct="80"></div></div></div>
-        </div>
+        <p class="skill-desc">Where my side-project work lives. Transcript pipelines, prompt and token-cost optimisation, streaming responses, and the small-but-real plumbing between Python backends, OAuth flows, and Next.js frontends — across four live AI-native products.</p>
         <div class="chips-row">
-          <span class="chip">Vite</span><span class="chip">Tailwind 4</span><span class="chip">Framer Motion</span><span class="chip">WebRTC</span><span class="chip">PWA</span><span class="chip">YouTube Data API</span><span class="chip">OpenAI / LLM APIs</span><span class="chip">Vercel</span><span class="chip">Render</span><span class="chip">GitHub Actions</span>
+          <span class="chip">OpenAI APIs</span><span class="chip">Prompt design</span><span class="chip">Transcript pipelines</span><span class="chip">LLM summarization</span><span class="chip">Streaming responses</span><span class="chip">Token-cost optimization</span><span class="chip">Google OAuth flows</span>
+        </div>
+        <div class="skill-foot">Currently exploring: <strong>RAG, embeddings, agentic workflows</strong></div>
+      </div>
+
+      <!-- Full-stack product (kept as a separate block; AI block above is the new 6th category per brief) -->
+      <div class="skill-block span-2 reveal">
+        <div class="skill-head">
+          <div class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg></div>
+          <h3 class="skill-title">Full-Stack Product</h3>
+          <span class="skill-confidence working">Working · side projects</span>
+        </div>
+        <p class="skill-desc">React 19 / Next.js / TypeScript on the front, Python and Node on the back, Supabase Postgres with row-level security underneath. Sync engines, P2P transports, and PWAs designed to feel native on mobile.</p>
+        <div class="chips-row">
+          <span class="chip">React 19</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">Tailwind</span><span class="chip">Framer Motion</span><span class="chip">Supabase</span><span class="chip">Postgres + RLS</span><span class="chip">FastAPI</span><span class="chip">WebRTC</span><span class="chip">PWA</span><span class="chip">Vercel</span><span class="chip">Render</span><span class="chip">GitHub Actions</span>
         </div>
       </div>
 
@@ -1773,20 +1951,18 @@ footer {
 </section>
 
 <!-- ========== EXPERIENCE ========== -->
-<section id="experience">
+<section id="experience" aria-labelledby="exp-title">
   <div class="container">
     <div class="reveal">
-      <div class="eyebrow">03 / Professional Experience</div>
-      <h2 class="section-title">Seven years, <span class="accent">two careers,</span> one mindset.</h2>
+      <div class="eyebrow">03 / Experience</div>
+      <h2 class="section-title" id="exp-title">Seven years, <span class="accent">two careers,</span> one mindset.</h2>
       <p class="section-sub">From auditing high-volume datasets to running CI/CD for cloud-native workloads — every step taught me something about reliability, scale, and the messy parts of shipping real systems.</p>
     </div>
-
     <div class="timeline">
-
       <div class="tl-item">
         <div class="tl-meta">2020 — Aug 2023 · Hyderabad, India</div>
         <h3 class="tl-title">DevOps Engineer</h3>
-        <div class="tl-org">Tech Mahindra Ltd <span class="org-sep">·</span> Cloud Infrastructure & Platform</div>
+        <div class="tl-org">Tech Mahindra Ltd <span class="org-sep">·</span> Cloud Infrastructure &amp; Platform</div>
         <div class="tl-content">
           <ul>
             <li>Built and maintained <strong>Azure DevOps YAML pipelines</strong> integrating Git, Maven, MSBuild, and Docker — automating build, test, and deploy across QA, UAT, and Production environments.</li>
@@ -1800,7 +1976,6 @@ footer {
           </ul>
         </div>
       </div>
-
       <div class="tl-item">
         <div class="tl-meta">2018 — Aug 2020 · Hyderabad, India</div>
         <h3 class="tl-title">Senior Business Analyst</h3>
@@ -1814,7 +1989,6 @@ footer {
           </ul>
         </div>
       </div>
-
       <div class="tl-item">
         <div class="tl-meta">2017 — 2018</div>
         <h3 class="tl-title">Captain · Operations Lead</h3>
@@ -1828,7 +2002,6 @@ footer {
           </ul>
         </div>
       </div>
-
       <div class="tl-item">
         <div class="tl-meta">2016 — 2017</div>
         <h3 class="tl-title">Senior Data Analyst</h3>
@@ -1841,10 +2014,9 @@ footer {
           </ul>
         </div>
       </div>
-
       <div class="tl-item">
         <div class="tl-meta">Sep 2015 — Feb 2016 · Lynnwood, WA</div>
-        <h3 class="tl-title">Internships · IT Help Desk & Foundation</h3>
+        <h3 class="tl-title">Internships · IT Help Desk &amp; Foundation</h3>
         <div class="tl-org">Edmonds Community College</div>
         <div class="tl-content">
           <ul>
@@ -1853,160 +2025,158 @@ footer {
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- ========== PROJECTS ========== -->
-<section id="projects">
+<section id="projects" aria-labelledby="projects-title">
   <div class="container">
     <div class="reveal">
-      <div class="eyebrow">04 / Selected Projects</div>
-      <h2 class="section-title">Six things I've shipped <span class="accent">on the side.</span></h2>
+      <div class="eyebrow">04 / Work</div>
+      <h2 class="section-title" id="projects-title">Six things I've shipped <span class="accent">on the side.</span></h2>
       <p class="section-sub">Four live full-stack products and two DevOps reference projects. Each one is end-to-end mine — data model, backend, frontend, deployment, and the messy decisions in between. Picked from <a href="https://github.com/phani1516" target="_blank" rel="noopener" style="color:var(--c-glow);text-decoration:underline;text-underline-offset:3px;">github.com/phani1516</a>.</p>
     </div>
-
     <div class="projects-grid">
 
-      <!-- Project 1: Bookmarkly -->
-      <article class="project reveal">
+      <!-- Project 1: skim.yt -->
+      <article class="project reveal" aria-labelledby="proj-skim-name">
         <div class="project-head">
           <span class="project-num">P / 01</span>
           <span class="project-status">Live</span>
         </div>
-        <div class="project-emoji">🔖</div>
-        <h3 class="project-name">Bookmarkly</h3>
-        <p class="project-hook">A mobile-first, offline-capable bookmark & notes manager with real-time cloud sync. Installable as a native PWA on iOS, Android, and desktop — no app store, no compromises.</p>
-        <div class="project-why"><strong>Why it matters →</strong> Real local-first sync engine I designed end-to-end: tombstoned soft deletes, last-writer-wins reconciliation on `updated_at`, push-then-pull merge on sign-in. Built without Redux/Zustand — a 20-LOC custom pub/sub store I wrote from scratch. AI accelerated the typing; the architecture is mine.</div>
+        <div class="project-emoji" aria-hidden="true">📺</div>
+        <h3 class="project-name" id="proj-skim-name">skim.yt</h3>
+        <p class="project-hook">Swipe through YouTube, smarter. A mobile-first PWA that turns videos into <strong>"nuggets"</strong> — 3-5 AI-generated bullets you can swipe through TikTok-style before deciding what's worth watching.</p>
+        <div class="project-why"><strong>Why it matters →</strong> Real AI product engineering: Python backend pulls transcripts and runs LLM summarization, Next.js frontend renders an Apple-grade Liquid Glass UI with Framer Motion physics. Round-robin chronological stack across subscribed channels, Google OAuth, swipeable card deck.</div>
         <div class="project-stack">
-          <span class="chip">React 19</span><span class="chip">TypeScript</span><span class="chip">Vite 7</span><span class="chip">Supabase</span><span class="chip">Tailwind 4</span><span class="chip">PWA</span><span class="chip">Postgres + RLS</span>
+          <span class="chip">Next.js 15</span><span class="chip">TypeScript</span><span class="chip">Python Backend</span><span class="chip">LLM Summarization</span><span class="chip">Framer Motion</span><span class="chip">Tailwind</span><span class="chip">Google OAuth</span><span class="chip">PWA</span>
         </div>
-        <div class="project-actions">
-          <a href="https://bookmarkly-tawny.vercel.app/" target="_blank" rel="noopener" class="project-btn primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v7H3V3h7"/></svg>
+        <div class="project-actions" aria-label="skim.yt links">
+          <a href="https://skim-yt.vercel.app/" target="_blank" rel="noopener" class="project-btn primary" aria-label="skim.yt — live demo (opens in new tab)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v7H3V3h7"/></svg>
             Live demo
           </a>
-          <a href="https://github.com/phani1516/bookmarkly" target="_blank" rel="noopener" class="project-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
+          <a href="https://github.com/phani1516/skim.yt" target="_blank" rel="noopener" class="project-btn" aria-label="skim.yt — source on GitHub (opens in new tab)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
             Source
           </a>
         </div>
       </article>
 
-      <!-- Project 2: skim.yt -->
-      <article class="project reveal delay-1">
+      <!-- Project 2: JobFetcher Pro -->
+      <article class="project reveal delay-1" aria-labelledby="proj-jobfetcher-name">
         <div class="project-head">
           <span class="project-num">P / 02</span>
           <span class="project-status">Live</span>
         </div>
-        <div class="project-emoji">📺</div>
-        <h3 class="project-name">skim.yt</h3>
-        <p class="project-hook">Swipe through YouTube, smarter. A mobile-first PWA that turns videos into <strong>"nuggets"</strong> — 3-5 AI-generated bullets you can swipe through TikTok-style before deciding what's worth watching.</p>
-        <div class="project-why"><strong>Why it matters →</strong> Real AI product engineering: Python backend pulls transcripts and runs LLM summarization, Next.js frontend renders an Apple-grade Liquid Glass UI with Framer Motion physics. Round-robin chronological stack across subscribed channels, Google OAuth, swipeable card deck — the kind of thing AI Engineer interviews actually care about.</div>
+        <div class="project-emoji" aria-hidden="true">🎯</div>
+        <h3 class="project-name" id="proj-jobfetcher-name">JobFetcher Pro</h3>
+        <p class="project-hook">An AI job aggregator and resume tailor — pulls listings from across the web and reshapes my resume to match each role, instead of me doing it manually for the 200th time.</p>
+        <div class="project-why"><strong>Why it matters →</strong> Three layers, all mine: a <strong>Python scraper</strong> that aggregates postings, a <strong>Supabase Postgres backend</strong> with PLpgSQL stored procedures for ranking and dedup, and a <strong>React + Vite frontend</strong> that runs the LLM resume-tailoring loop. Scheduled GitHub Actions keep listings fresh.</div>
         <div class="project-stack">
-          <span class="chip">Next.js 15</span><span class="chip">TypeScript</span><span class="chip">Python Backend</span><span class="chip">LLM Summarization</span><span class="chip">Framer Motion</span><span class="chip">Tailwind</span><span class="chip">Google OAuth</span><span class="chip">PWA</span>
+          <span class="chip">React + Vite</span><span class="chip">Python Scraper</span><span class="chip">Supabase</span><span class="chip">Postgres + PLpgSQL</span><span class="chip">LLM Resume Tailoring</span><span class="chip">GitHub Actions</span>
         </div>
-        <div class="project-actions">
-          <a href="https://skim-yt.vercel.app/" target="_blank" rel="noopener" class="project-btn primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v7H3V3h7"/></svg>
+        <div class="project-actions" aria-label="JobFetcher Pro links">
+          <a href="https://job-fetcher-chi.vercel.app/" target="_blank" rel="noopener" class="project-btn primary" aria-label="JobFetcher Pro — live demo (opens in new tab)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v7H3V3h7"/></svg>
             Live demo
           </a>
-          <a href="https://github.com/phani1516/skim.yt" target="_blank" rel="noopener" class="project-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
+          <a href="https://github.com/phani1516/JobFetcher" target="_blank" rel="noopener" class="project-btn" aria-label="JobFetcher Pro — source on GitHub (opens in new tab)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
             Source
           </a>
         </div>
       </article>
 
-      <!-- Project 3: JobFetcher Pro -->
-      <article class="project reveal">
+      <!-- Project 3: Bookmarkly -->
+      <article class="project reveal" aria-labelledby="proj-bookmarkly-name">
         <div class="project-head">
           <span class="project-num">P / 03</span>
           <span class="project-status">Live</span>
         </div>
-        <div class="project-emoji">🎯</div>
-        <h3 class="project-name">JobFetcher Pro</h3>
-        <p class="project-hook">An AI job aggregator and resume tailor — pulls listings from across the web and reshapes my resume to match each role, instead of me doing it manually for the 200th time.</p>
-        <div class="project-why"><strong>Why it matters →</strong> Three layers, all mine: a <strong>Python scraper</strong> that aggregates postings, a <strong>Supabase Postgres backend</strong> with PLpgSQL stored procedures for ranking and dedup, and a <strong>React + Vite frontend</strong> that runs the LLM resume-tailoring loop. Scheduled GitHub Actions keep listings fresh. Built it because the job-search grind needed automation.</div>
+        <div class="project-emoji" aria-hidden="true">🔖</div>
+        <h3 class="project-name" id="proj-bookmarkly-name">Bookmarkly</h3>
+        <p class="project-hook">A mobile-first, offline-capable bookmark &amp; notes manager with real-time cloud sync. Installable as a native PWA on iOS, Android, and desktop — no app store, no compromises.</p>
+        <div class="project-why"><strong>Why it matters →</strong> Real local-first sync engine designed end-to-end: tombstoned soft deletes, last-writer-wins reconciliation on <code>updated_at</code>, push-then-pull merge on sign-in. Built without Redux or Zustand — a 20-LOC custom pub/sub store written from scratch.</div>
         <div class="project-stack">
-          <span class="chip">React + Vite</span><span class="chip">Python Scraper</span><span class="chip">Supabase</span><span class="chip">Postgres + PLpgSQL</span><span class="chip">LLM Resume Tailoring</span><span class="chip">GitHub Actions</span>
+          <span class="chip">React 19</span><span class="chip">TypeScript</span><span class="chip">Vite 7</span><span class="chip">Supabase</span><span class="chip">Tailwind 4</span><span class="chip">PWA</span><span class="chip">Postgres + RLS</span>
         </div>
-        <div class="project-actions">
-          <a href="https://job-fetcher-chi.vercel.app/" target="_blank" rel="noopener" class="project-btn primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v7H3V3h7"/></svg>
+        <div class="project-actions" aria-label="Bookmarkly links">
+          <a href="https://bookmarkly-tawny.vercel.app/" target="_blank" rel="noopener" class="project-btn primary" aria-label="Bookmarkly — live demo (opens in new tab)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v7H3V3h7"/></svg>
             Live demo
           </a>
-          <a href="https://github.com/phani1516/JobFetcher" target="_blank" rel="noopener" class="project-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
+          <a href="https://github.com/phani1516/bookmarkly" target="_blank" rel="noopener" class="project-btn" aria-label="Bookmarkly — source on GitHub (opens in new tab)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
             Source
           </a>
         </div>
       </article>
 
       <!-- Project 4: QuickDrop -->
-      <article class="project reveal delay-1">
+      <article class="project reveal delay-1" aria-labelledby="proj-quickdrop-name">
         <div class="project-head">
           <span class="project-num">P / 04</span>
           <span class="project-status">Live</span>
         </div>
-        <div class="project-emoji">📡</div>
-        <h3 class="project-name">QuickDrop</h3>
+        <div class="project-emoji" aria-hidden="true">📡</div>
+        <h3 class="project-name" id="proj-quickdrop-name">QuickDrop</h3>
         <p class="project-hook">Browser-to-browser P2P file sharing across devices on the same network — no uploads, no accounts, no cloud. A self-hosted Snapdrop alternative with a glass UI and an animated radar.</p>
-        <div class="project-why"><strong>Why it matters →</strong> Pure systems engineering, no AI shortcuts available: chunked 16KB transfers with `bufferedAmountLowThreshold` flow control, STUN/TURN ICE handling for symmetric NAT traversal, IP-based rate limiting. Server only relays signaling — every byte of every file flows directly between browsers, encrypted.</div>
+        <div class="project-why"><strong>Why it matters →</strong> Pure systems engineering: chunked 16KB transfers with <code>bufferedAmountLowThreshold</code> flow control, STUN/TURN ICE handling for symmetric NAT traversal, IP-based rate limiting. The server only relays signaling — every byte of every file flows directly between browsers, encrypted.</div>
         <div class="project-stack">
           <span class="chip">Node.js</span><span class="chip">Express 5</span><span class="chip">WebRTC</span><span class="chip">WebSockets</span><span class="chip">Vanilla JS</span><span class="chip">PWA</span><span class="chip">TURN/STUN</span>
         </div>
-        <div class="project-actions">
-          <a href="https://quickdrop-fu3j.onrender.com/" target="_blank" rel="noopener" class="project-btn primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v7H3V3h7"/></svg>
+        <div class="project-actions" aria-label="QuickDrop links">
+          <a href="https://quickdrop-fu3j.onrender.com/" target="_blank" rel="noopener" class="project-btn primary" aria-label="QuickDrop — live demo (opens in new tab)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7"/><path d="M21 3 10 14"/><path d="M21 14v7H3V3h7"/></svg>
             Live demo
           </a>
-          <a href="https://github.com/phani1516/QuickDrop" target="_blank" rel="noopener" class="project-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
+          <a href="https://github.com/phani1516/QuickDrop" target="_blank" rel="noopener" class="project-btn" aria-label="QuickDrop — source on GitHub (opens in new tab)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
             Source
           </a>
         </div>
       </article>
 
       <!-- Project 5: DevOps Greeting API -->
-      <article class="project reveal">
+      <article class="project reveal" aria-labelledby="proj-greeting-name">
         <div class="project-head">
           <span class="project-num">P / 05</span>
-          <span class="project-status">Reference</span>
+          <span class="project-status reference">Reference</span>
         </div>
-        <div class="project-emoji">⚙️</div>
-        <h3 class="project-name">DevOps Greeting API</h3>
+        <div class="project-emoji" aria-hidden="true">⚙️</div>
+        <h3 class="project-name" id="proj-greeting-name">DevOps Greeting API</h3>
         <p class="project-hook">A minimal Java microservice wired to a complete <strong>Azure DevOps YAML pipeline</strong> — the kind of reference project I use to demonstrate end-to-end build → test → deploy automation in interviews and team onboarding.</p>
         <div class="project-why"><strong>Why it matters →</strong> Strips the noise out of CI/CD. Maven build, containerisable artifact, an Azure Pipelines definition you can read in two minutes — every step maps to a real production decision (when to run, what to gate on, how to promote).</div>
         <div class="project-stack">
           <span class="chip">Java</span><span class="chip">Maven</span><span class="chip">Azure Pipelines</span><span class="chip">YAML</span><span class="chip">CI/CD</span>
         </div>
-        <div class="project-actions">
-          <a href="https://github.com/phani1516/devops-greeting-api" target="_blank" rel="noopener" class="project-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
-            View source
+        <div class="project-actions" aria-label="DevOps Greeting API links">
+          <a href="https://github.com/phani1516/devops-greeting-api" target="_blank" rel="noopener" class="project-btn" aria-label="DevOps Greeting API — source on GitHub (opens in new tab)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
+            Source
           </a>
         </div>
       </article>
 
       <!-- Project 6: DevOps Weather API -->
-      <article class="project reveal delay-1">
+      <article class="project reveal delay-1" aria-labelledby="proj-weather-name">
         <div class="project-head">
           <span class="project-num">P / 06</span>
-          <span class="project-status">Reference</span>
+          <span class="project-status reference">Reference</span>
         </div>
-        <div class="project-emoji">🌦️</div>
-        <h3 class="project-name">DevOps Weather API</h3>
+        <div class="project-emoji" aria-hidden="true">🌦️</div>
+        <h3 class="project-name" id="proj-weather-name">DevOps Weather API</h3>
         <p class="project-hook">A .NET / C# weather microservice paired with an Azure DevOps pipeline — the sister project to the Greeting API, demonstrating the same CI/CD discipline applied to a different runtime stack.</p>
         <div class="project-why"><strong>Why it matters →</strong> Proves the pipeline pattern is platform-agnostic. Same build → test → deploy promotion model, different toolchain (MSBuild instead of Maven). Useful for teams running polyglot Azure estates.</div>
         <div class="project-stack">
           <span class="chip">C# / .NET</span><span class="chip">Azure Pipelines</span><span class="chip">MSBuild</span><span class="chip">REST API</span><span class="chip">CI/CD</span>
         </div>
-        <div class="project-actions">
-          <a href="https://github.com/phani1516/devops-weather-api" target="_blank" rel="noopener" class="project-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
-            View source
+        <div class="project-actions" aria-label="DevOps Weather API links">
+          <a href="https://github.com/phani1516/devops-weather-api" target="_blank" rel="noopener" class="project-btn" aria-label="DevOps Weather API — source on GitHub (opens in new tab)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg>
+            Source
           </a>
         </div>
       </article>
@@ -2016,35 +2186,40 @@ footer {
 </section>
 
 <!-- ========== EDUCATION ========== -->
-<section id="education">
+<section id="education" aria-labelledby="edu-title">
   <div class="container">
     <div class="reveal">
-      <div class="eyebrow">05 / Education & Certifications</div>
-      <h2 class="section-title">Where I <span class="accent">studied.</span></h2>
+      <div class="eyebrow">05 / Education</div>
+      <h2 class="section-title" id="edu-title">Where I <span class="accent">studied.</span></h2>
     </div>
-
     <div class="edu-grid">
       <div class="edu-card featured reveal">
         <div class="edu-badge deg">Master's Degree</div>
-        <div class="edu-name">M.S. Computer Science</div>
+        <h3 class="edu-name">M.S. Computer Science</h3>
         <div class="edu-org">Roosevelt University · Chicago, IL</div>
-        <div class="edu-when">May 2025</div>
+        <div class="edu-when">May 2025 · GPA 3.6</div>
       </div>
       <div class="edu-card reveal delay-1">
         <div class="edu-badge deg">Bachelor's Degree</div>
-        <div class="edu-name">B.C.A. Computer Applications</div>
+        <h3 class="edu-name">B.C.A. Computer Applications</h3>
         <div class="edu-org">Osmania University · Telangana, India</div>
         <div class="edu-when">June 2019</div>
       </div>
       <div class="edu-card reveal">
         <div class="edu-badge cert">Certificate</div>
-        <div class="edu-name">Web Application Development</div>
+        <h3 class="edu-name">Web Application Development</h3>
         <div class="edu-org">Edmonds Community College · WA</div>
         <div class="edu-when">June 2016</div>
       </div>
       <div class="edu-card reveal delay-1">
+        <div class="edu-badge cert">Certification</div>
+        <h3 class="edu-name">Microsoft Certified: Azure Fundamentals (AZ-900)</h3>
+        <div class="edu-org">Microsoft · Credential I229-2143</div>
+        <div class="edu-when">April 2022</div>
+      </div>
+      <div class="edu-card reveal">
         <div class="edu-badge scholar">U.S. State Dept Scholarship</div>
-        <div class="edu-name">Northwest Community College Initiative</div>
+        <h3 class="edu-name">Northwest Community College Initiative</h3>
         <div class="edu-org">U.S. State Department · WA, USA</div>
         <div class="edu-when">June 2016</div>
       </div>
@@ -2052,129 +2227,138 @@ footer {
   </div>
 </section>
 
-<!-- ========== EXTRAS ========== -->
-<section id="extras">
+<!-- ========== BEYOND ========== -->
+<section id="extras" aria-labelledby="extras-title">
   <div class="container">
     <div class="reveal">
-      <div class="eyebrow">06 / Leadership & Beyond</div>
-      <h2 class="section-title">Outside the <span class="accent">terminal.</span></h2>
+      <div class="eyebrow">06 / Beyond</div>
+      <h2 class="section-title" id="extras-title">Outside the <span class="accent">terminal.</span></h2>
       <p class="section-sub">A few things that don't fit on a résumé but say something about how I work.</p>
     </div>
-
     <div class="extras-grid">
       <div class="extra reveal">
-        <div class="extra-icon">🎤</div>
+        <div class="extra-icon" aria-hidden="true">🎤</div>
         <div class="extra-num">6</div>
-        <div class="extra-title">NCORE Conference Talks</div>
-        <div class="extra-desc">Represented Indian culture as a speaker across six presentations at the National Conference on Race and Ethnicity (USA).</div>
+        <h3 class="extra-title">NCORE Conference Talks</h3>
+        <p class="extra-desc">Represented Indian culture as a speaker across six presentations at the National Conference on Race and Ethnicity (USA).</p>
       </div>
       <div class="extra reveal delay-1">
-        <div class="extra-icon">🤝</div>
+        <div class="extra-icon" aria-hidden="true">🤝</div>
         <div class="extra-num">90+</div>
-        <div class="extra-title">Volunteer Hours</div>
-        <div class="extra-desc">Community service in the Seattle, WA area — supporting local initiatives during my time on the U.S. State Department scholarship.</div>
+        <h3 class="extra-title">Volunteer Hours</h3>
+        <p class="extra-desc">Community service in the Seattle, WA area — supporting local initiatives during my time on the U.S. State Department scholarship.</p>
       </div>
       <div class="extra reveal delay-2">
-        <div class="extra-icon">⚡</div>
+        <div class="extra-icon" aria-hidden="true">⚡</div>
         <div class="extra-num">4</div>
-        <div class="extra-title">Live Products Shipped</div>
-        <div class="extra-desc">Bookmarkly, QuickDrop, skim.yt, and JobFetcher — all live, all mine end-to-end. AI accelerated the typing; data models, sync engines, network stacks, and product design were all decisions I owned.</div>
+        <h3 class="extra-title">Live Products Shipped</h3>
+        <p class="extra-desc">skim.yt, JobFetcher Pro, Bookmarkly, and QuickDrop — all live, all designed and built end-to-end. Data models, sync engines, network stacks, and product design owned throughout.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ========== CONTACT ========== -->
-<section id="contact">
+<section id="contact" aria-labelledby="contact-title">
   <div class="container">
     <div class="reveal">
       <div class="eyebrow">07 / Contact</div>
-      <h2 class="section-title">Building something <span class="accent">cloud-native?</span></h2>
+      <h2 class="section-title" id="contact-title">Building something <span class="accent">cloud-native?</span></h2>
       <p class="section-sub">Whether it's a DevOps role, a platform-engineering team, or a side project that needs an extra brain — I'd love to hear from you.</p>
     </div>
-
     <div class="contact-wrap">
       <div class="reveal">
-        <div class="avatar-wrap">
+        <div class="avatar-wrap" aria-hidden="true">
           <div class="avatar-ring"></div>
           <div class="avatar-ring"></div>
           <div class="avatar-ring"></div>
           <div class="avatar-circle">PV</div>
         </div>
       </div>
-
       <div class="reveal delay-1">
         <div class="contact-cards">
-          <a href="mailto:Phanikrv@gmail.com" class="cc">
-            <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+          <a href="mailto:Phanikrv@gmail.com" class="cc" aria-label="Email Phani">
+            <div class="cc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
             <div class="cc-meta">
               <div class="cc-lbl">Email</div>
               <div class="cc-val">Phanikrv@gmail.com</div>
             </div>
           </a>
-          <a href="tel:+13126199834" class="cc">
-            <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <a href="tel:+13126199834" class="cc" aria-label="Call Phani">
+            <div class="cc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
             <div class="cc-meta">
               <div class="cc-lbl">Phone</div>
               <div class="cc-val">+1 312-619-9834</div>
             </div>
           </a>
-          <a href="https://github.com/phani1516" target="_blank" rel="noopener" class="cc">
-            <div class="cc-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg></div>
+          <a href="https://github.com/phani1516" target="_blank" rel="noopener" class="cc" aria-label="GitHub profile (opens in new tab)">
+            <div class="cc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.6.5.5 5.6.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.8-1.4-3.8-1.4-.5-1.3-1.3-1.6-1.3-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.4.1-3 0 0 1-.3 3.3 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.8.1 3 .8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.6 18.4.5 12 .5z"/></svg></div>
             <div class="cc-meta">
               <div class="cc-lbl">GitHub</div>
               <div class="cc-val">@phani1516</div>
             </div>
           </a>
-          <a href="https://www.linkedin.com/in/phanividyadharani/" target="_blank" rel="noopener" class="cc">
-            <div class="cc-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></div>
+          <a href="https://www.linkedin.com/in/phanividyadharani/" target="_blank" rel="noopener" class="cc" aria-label="LinkedIn profile (opens in new tab)">
+            <div class="cc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></div>
             <div class="cc-meta">
               <div class="cc-lbl">LinkedIn</div>
               <div class="cc-val">phanividyadharani</div>
             </div>
           </a>
-          <a href="#" class="cc" onclick="event.preventDefault();">
-            <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div class="cc-meta">
-              <div class="cc-lbl">Location</div>
-              <div class="cc-val">Chicago, IL · USA</div>
-            </div>
-          </a>
-          <a href="mailto:Phanikrv@gmail.com?subject=Let's%20chat" class="cc">
-            <div class="cc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v12H7l-4 4z"/></svg></div>
+          <span class="cc" role="group" aria-label="Location">
+            <span class="cc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="cc-meta">
+              <span class="cc-lbl">Location</span>
+              <span class="cc-val">Chicago, IL · USA</span>
+            </span>
+          </span>
+          <a href="mailto:Phanikrv@gmail.com?subject=Let's%20chat" class="cc" aria-label="Open to opportunities">
+            <div class="cc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v12H7l-4 4z"/></svg></div>
             <div class="cc-meta">
               <div class="cc-lbl">Status</div>
               <div class="cc-val" style="color: var(--c-glow);">Open to opportunities</div>
             </div>
           </a>
         </div>
-
         <div class="contact-cta">
           <div class="contact-cta-text">
             Ready when you are.
             <small>Best for DevOps, Platform Engineer, SRE, or AI Engineer roles.</small>
           </div>
-          <a href="mailto:Phanikrv@gmail.com" class="btn btn-primary">
-            <span>Start a conversation</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
+          <div class="contact-cta-actions">
+            <a href="https://docs.google.com/document/d/1iENdYa1kmuEzd2a_8e-X9ZjxFqBMCMHq/edit?usp=sharing&amp;ouid=100588455178571497159&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" class="btn btn-ghost">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download résumé</span>
+            </a>
+            <a href="mailto:Phanikrv@gmail.com" class="btn btn-primary">
+              <span>Start a conversation</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+
 <!-- ========== FOOTER ========== -->
 <footer>
   <div class="footer-row">
     <span>© 2026 Phani Vidyadharani</span>
     <span>Built with HTML, CSS, JS — and a lot of <span style="color:var(--c-glow);">caffeine</span> ☕</span>
-    <span>v1.1.0 · Chicago</span>
+    <span>v1.2.0 · Chicago</span>
   </div>
 </footer>
 
 <!-- ========== JS ========== -->
 <script>
+/* ============================================================
+   0. UTIL — prefers-reduced-motion check
+   ============================================================ */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /* ============================================================
    1. LOADER
    ============================================================ */
@@ -2191,14 +2375,11 @@ window.addEventListener('load', () => {
   const dot  = document.querySelector('.cursor-dot');
   const ring = document.querySelector('.cursor-ring');
   if (!dot || !ring) return;
-
   let mx = 0, my = 0, rx = 0, ry = 0;
-
   window.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
     dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
   });
-
   function loop() {
     rx += (mx - rx) * 0.18;
     ry += (my - ry) * 0.18;
@@ -2206,65 +2387,60 @@ window.addEventListener('load', () => {
     requestAnimationFrame(loop);
   }
   loop();
-
   const hoverables = 'a, button, .project, .skill-block, .cc, .extra, .edu-card, .stat-card';
   document.querySelectorAll(hoverables).forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
     el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
   });
-
   window.addEventListener('mousedown', () => ring.classList.add('clicking'));
   window.addEventListener('mouseup',   () => ring.classList.remove('clicking'));
 })();
 
 /* ============================================================
-   3. PARTICLE CANVAS — dots + connecting lines
+   3. PARTICLE CANVAS — gated on prefers-reduced-motion
    ============================================================ */
 (function() {
+  if (prefersReducedMotion) return;
   const c = document.getElementById('particle-canvas');
   if (!c) return;
   const ctx = c.getContext('2d');
-  let w, h, particles;
-  const PCOUNT_BASE = 60;
+  let particles;
+  const PCOUNT_BASE = 50;
 
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = c.width  = window.innerWidth * dpr;
-    h = c.height = window.innerHeight * dpr;
+    c.width  = window.innerWidth * dpr;
+    c.height = window.innerHeight * dpr;
     c.style.width  = window.innerWidth + 'px';
     c.style.height = window.innerHeight + 'px';
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(dpr, dpr);
     init();
   }
-
   function init() {
-    const count = window.innerWidth < 720 ? 30 : PCOUNT_BASE;
+    const count = window.innerWidth < 720 ? 26 : PCOUNT_BASE;
     particles = [];
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        r: Math.random() * 1.4 + 0.6
+        vx: (Math.random() - 0.5) * 0.30,
+        vy: (Math.random() - 0.5) * 0.30,
+        r: Math.random() * 1.3 + 0.6
       });
     }
   }
-
   let mouseX = -9999, mouseY = -9999;
   window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
   window.addEventListener('mouseleave', () => { mouseX = -9999; mouseY = -9999; });
 
   function frame() {
     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
     for (let p of particles) {
       p.x += p.vx;
       p.y += p.vy;
       if (p.x < 0 || p.x > window.innerWidth)  p.vx *= -1;
       if (p.y < 0 || p.y > window.innerHeight) p.vy *= -1;
-
-      // mouse repel (light)
       const dx = p.x - mouseX, dy = p.y - mouseY;
       const dist = Math.sqrt(dx*dx + dy*dy);
       if (dist < 140) {
@@ -2272,14 +2448,11 @@ window.addEventListener('load', () => {
         p.x += (dx / dist) * force;
         p.y += (dy / dist) * force;
       }
-
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(77, 223, 255, 0.45)';
+      ctx.fillStyle = 'rgba(77, 223, 255, 0.40)';
       ctx.fill();
     }
-
-    // connecting lines
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const a = particles[i], b = particles[j];
@@ -2289,7 +2462,7 @@ window.addEventListener('load', () => {
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          const alpha = (1 - d / 130) * 0.18;
+          const alpha = (1 - d / 130) * 0.16;
           ctx.strokeStyle = `rgba(77, 223, 255, ${alpha})`;
           ctx.lineWidth = 0.6;
           ctx.stroke();
@@ -2298,7 +2471,6 @@ window.addEventListener('load', () => {
     }
     requestAnimationFrame(frame);
   }
-
   resize();
   window.addEventListener('resize', resize);
   frame();
@@ -2311,10 +2483,8 @@ window.addEventListener('load', () => {
   const nav = document.getElementById('nav');
   const navLinks = document.querySelectorAll('.nav-links a');
   const sections = document.querySelectorAll('section[id]');
-
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 30);
-
     let current = '';
     sections.forEach(sec => {
       const top = sec.offsetTop - 200;
@@ -2324,41 +2494,33 @@ window.addEventListener('load', () => {
       a.classList.toggle('active', a.getAttribute('href') === '#' + current);
     });
   });
-
   const menuBtn = document.getElementById('menuBtn');
   const navMobile = document.getElementById('navMobile');
   menuBtn.addEventListener('click', () => {
-    menuBtn.classList.toggle('open');
+    const open = menuBtn.classList.toggle('open');
     navMobile.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
   });
   navMobile.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       menuBtn.classList.remove('open');
       navMobile.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
     });
   });
 })();
 
 /* ============================================================
-   5. INTERSECTION OBSERVER — reveals + skill bar fills
+   5. INTERSECTION OBSERVER — reveals
    ============================================================ */
 (function() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
-
-        // skill bars
-        if (entry.target.classList.contains('skill-block')) {
-          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-            const pct = bar.dataset.pct;
-            requestAnimationFrame(() => { bar.style.width = pct + '%'; });
-          });
-        }
       }
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
   document.querySelectorAll('.reveal, .tl-item, .skill-block').forEach(el => io.observe(el));
 })();
 
@@ -2366,10 +2528,10 @@ window.addEventListener('load', () => {
    6. STAT CARD 3D TILT
    ============================================================ */
 (function() {
+  if (prefersReducedMotion) return;
   const wrap = document.getElementById('statCardWrap');
   const card = document.getElementById('statCard');
   if (!wrap || !card) return;
-
   wrap.addEventListener('mousemove', (e) => {
     const r = wrap.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width;
@@ -2380,7 +2542,6 @@ window.addEventListener('load', () => {
     card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(0)`;
     card.style.animation = 'none';
   });
-
   wrap.addEventListener('mouseleave', () => {
     card.style.transition = 'transform 0.6s var(--ease)';
     card.style.transform = '';
@@ -2389,12 +2550,12 @@ window.addEventListener('load', () => {
 })();
 
 /* ============================================================
-   7. SUBTLE PARALLAX ON HERO TAG/NAME
+   7. SUBTLE PARALLAX ON HERO NAME
    ============================================================ */
 (function() {
+  if (prefersReducedMotion) return;
   const heroName = document.querySelector('.hero-name');
   if (!heroName) return;
-
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     if (y < window.innerHeight) {
